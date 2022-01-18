@@ -1,0 +1,34 @@
+doctype html
+html(lang="en") 
+    include ../partials/head.pug
+    body
+        include  ../partials/menu.pug
+        div(style="padding: 5%;")
+            h1 Agregar Producto
+            form(class="col-6" action="/api/productos/agregar" enctype="multipart/form-data" method="POST")
+                div(class="mb-3")
+                    label(for="title" class="form-label") Nombre del producto
+                    input(type="text" class="form-control" id="title" name="title")
+
+                div(class="mb-3")
+                    label(for="price" class="form-label") Precio del producto
+                    input(type="number" class="form-control" id="price" name="price")
+
+                div(class="mb-3")
+                    label(for="SKU" class="form-label") SKU
+                    input(type="text" class="form-control" id="SKU" name="SKU")
+
+                div(class="mb-3")
+                    label(for="stock" class="form-label") Stock
+                    input(type="number" class="form-control" id="stock" name="stock")
+
+                div(class="mb-3")
+                    label(for="thumbnail" class="form-label") Foto del producto
+                    input(class="form-control form-control-lg" id="thumbnail" name="thumbnail" type="file")
+
+                div(class="mb-3")
+                    label(for="description" class="form-label") Descripción del producto
+                    textarea(class="form-control" name="description" id="description" cols="30" rows="10")
+
+        
+                input(type="submit" class="btn btn-primary" value="Enviar")

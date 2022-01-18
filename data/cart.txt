@@ -1,0 +1,1 @@
+[{"id":1,"timeStamp":"16/1/2022","products":[{"title":"Escuadra","price":"213","SKU":"ES21315142","stock":"20","description":"coso","timestamp":"15/1/2022","id":1},{"title":"Escuadra","price":"213","SKU":"ES21315142","stock":"10","description":"coso","timestamp":"15/1/2022","id":2}]}]

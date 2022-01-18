@@ -1,0 +1,49 @@
+doctype html
+html(lang="en") 
+    include ./partials/head.pug
+    body
+        include  ./partials/menu.pug
+        section(class="container-fluid")
+            div( class="row")
+                h1 Productos
+                each prod in data
+                    div(class="card col-3" id= prod.id)
+                        img(src="/"+prod.thumbnail)
+                        div(class="card-body")
+                            h5(class="card-title")= prod.title
+                            p(class="card-text")= prod.price
+                            p(class="card-text")= prod.description
+                            span(class="card-text")=prod.SKU
+                            br
+                            br
+                            button(style="display:none;" class="btn btn-primary" id="X"+prod.id onclick="closeUpdate("+prod.id+")") X
+                            form( style="display:none;" id="update"+prod.id onsubmit="return updateProduct(this,"+prod.id+")" enctype="multipart/form-data")
+                                div(class="mb-3")
+                                    label(for="title" class="form-label") Nombre del producto
+                                    input(type="text" class="form-control form-control-sm" id="title" name="title")
+
+                                div(class="mb-3")
+                                    label(for="price" class="form-label") Precio del producto
+                                    input(type="number" class="form-control form-control-sm" id="price" name="price")
+
+                                div(class="mb-3")
+                                    label(for="SKU" class="form-label") SKU
+                                    input(type="text" class="form-control form-control-sm" id="SKU" name="SKU")
+
+                                div(class="mb-3")
+                                    label(for="stock" class="form-label") Stock
+                                    input(type="number" class="form-control form-control-sm" id="stock" name="stock")
+
+                                div(class="mb-3")
+                                    label(for="thumbnail" class="form-label") Foto del producto
+                                    input(class="form-control form-control-sm" id="thumbnail" name="thumbnail" type="file")
+
+                                div(class="mb-3")
+                                    label(for="description" class="form-label") Descripción del producto
+                                    textarea(class="form-control form-control-sm" name="description" id="description" cols="30" rows="10")
+
+        
+                                input(type="submit" class="btn btn-primary" value="Enviar")
+                        button(class="btn btn-primary" onclick="updateProd("+prod.id+")") Actualizar
+                        button(class="btn btn-primary") Eliminar
+    script(src="/js/updateProd.js") 

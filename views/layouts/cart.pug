@@ -1,0 +1,20 @@
+doctype html
+html(lang="en") 
+    include ../partials/head.pug
+    body
+        include ../partials/menu.pug
+        table(class="table")
+        each prod in data
+            thead
+                tr            
+                    th(scope="col") Precio
+                    th(scope="col") Producto
+                    th(scope="col") Imagen
+            tbody
+                tr
+                    td(class="titleProd")= prod.title
+                tr    
+                    td(class="priceProd")= prod.price
+                tr
+                    td
+                        img(class="thumbnailProd", src="/"+prod.thumbnail )
