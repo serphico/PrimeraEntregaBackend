@@ -3,8 +3,8 @@ import cart from "../controller/cartController.js";
 
 const routerCart = Router();
 
-routerCart.get('/',(req, res) => {
-    let data = cart.deleteProductsCart(req.params.id, req.params.id_prod)
+routerCart.get('/:id?',(req, res) => {
+    let data = cart.listProducts(req.params.id)
     res.render('layouts/cart.pug', {data})
 })
 

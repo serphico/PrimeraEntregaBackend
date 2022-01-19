@@ -8,12 +8,14 @@ html(lang="en")
                 h1 Productos
                 each prod in data
                     div(class="card col-3" id= prod.id)
-                        img(src="/"+prod.thumbnail)
+                        img(id="thumbnailCart" src="/"+prod.thumbnail)
                         div(class="card-body")
-                            h5(class="card-title")= prod.title
-                            p(class="card-text")= prod.price
-                            p(class="card-text")= prod.description
-                            span(class="card-text")=prod.SKU
+                            h5(class="card-title" id="titleCart")= prod.title
+                            p(class="card-text" id="priceCart")= prod.price
+                            p(class="card-text" id="descriptionCart")= prod.description
+                            span(class="card-text" id="SKUCart")= prod.SKU
+                            p(class="card-text" id="stockCart")= prod.stock
+                            small(id="timestampCart")= prod.timestamp
                             br
                             br
                             button(style="display:none;" class="btn btn-primary" id="X"+prod.id onclick="closeUpdate("+prod.id+")") X
@@ -45,5 +47,6 @@ html(lang="en")
         
                                 input(type="submit" class="btn btn-primary" value="Enviar")
                         button(class="btn btn-primary" onclick="updateProd("+prod.id+")") Actualizar
-                        button(class="btn btn-primary") Eliminar
+                        button(class="btn btn-primary" onclick="deleteProd("+prod.id+")") Eliminar
+                        button(class="btn btn-primary" onclick="addCart("+prod.id+")") Agregar al carrito
     script(src="/js/updateProd.js") 

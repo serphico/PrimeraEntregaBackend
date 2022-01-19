@@ -42,14 +42,17 @@ const upload = multer({storage: storage})
         test = {...req.body,thumbnail: file.filename}
         console.log(test)
         res.send(products.save(test))
+        res.redirect('/')
     })
 
     routerProd.put('/:id',adminMid, (req, res,next) =>{
         res.send(products.putData(req.body, req.params.id))
+        res.redirect('/')
     })
 
     routerProd.delete('/:id',adminMid,(req,res,next) =>{
         res.send(products.deleteData(req.params.id))
+        res.redirect('/')
     })
 
 

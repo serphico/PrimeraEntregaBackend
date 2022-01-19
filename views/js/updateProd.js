@@ -42,3 +42,42 @@ function updateProduct(e,id){
       console.log(res);
 });
 }
+
+function deleteProd(id){
+    fetch('http://localhost:8080/api/productos/'+id, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: ''
+ })
+.then(res => res.json())
+.then(res=> {
+      console.log(res);
+});
+}
+
+function addCart(id){
+    let upCart = {
+        title: document.getElementById('titleCart').textContent,
+        price: document.getElementById('priceCart').textContent,
+        SKU: document.getElementById('SKUCart').textContent,
+        stock: document.getElementById('stockCart').textContent,
+        description: document.getElementById('descriptionCart').textContent,
+        timestamp: document.getElementById('timestampCart').textContent,
+        thumbnail: document.getElementById('thumbnailCart').src,
+        id: id
+    }
+
+    fetch('http://localhost:8080/api/carrito/'+id+'/productos', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(upCart)
+ })
+.then(res => res.json())
+.then(res=> {
+      console.log(res);
+});
+}

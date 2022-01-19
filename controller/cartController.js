@@ -49,21 +49,47 @@ class Cart{
     listProducts(id){
         let newID = id-1;
         if(fs.existsSync(dataCartPath)){
-           let data = JSON.parse(fs.readFileSync(dataCartPath,'utf-8'));
-           let allProductsCart = data[newID].products;
-           console.log(allProductsCart)
-           return allProductsCart
+            if(id != undefined){
+                let data = JSON.parse(fs.readFileSync(dataCartPath,'utf-8'));
+                let allProductsCart = data[newID].products;
+                console.log(allProductsCart)
+                return allProductsCart
+            }else{
+                let data = JSON.parse(fs.readFileSync(dataCartPath,'utf-8'));
+                for (let i = 0; i < data.length; i++) {
+                    let allProductsCart = data[i].products;
+                    console.log(allProductsCart)
+                    return allProductsCart;
+                    break;                    
+                }
+                let allProductsCart = data[newID].products;
+                console.log(allProductsCart)
+                return allProductsCart
+            }
+
         }
     }
 
     addProductsCart(obj,id){
+        console.log(obj)
         let newID = id-1;
         if(fs.existsSync(dataCartPath)){
             let data = JSON.parse(fs.readFileSync(dataCartPath,'utf-8'));
             let getProductsCart = data[newID].products;
-            getProductsCart.push(obj)
-            console.log(getProductsCart)
-            //return getProductsCart
+            for (let i = 0; i < getProductsCart.length; i++) {
+                if(getProductsCart.id != obj.id){
+                    getProductsCart.push(obj)
+                    fs.writeFileSync(dataCartPath,JSON.stringify(data))
+                    return data
+                    break;
+                }else{
+                    let err = {mensaje:"ese producto ya existe"}
+                    return err
+                }
+                
+            }
+
+
          }
     }
 
